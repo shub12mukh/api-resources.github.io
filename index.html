@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>HTML5 API Demo</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body onload="onLoaded()">
+		<button class="open-btn" onclick="openNavBar()">☰</button>
+		<ul id="nav_bar">
+			<li id="close"><a class="close-btn" onclick="shrinkNavBar()">&#10005;</a></li>
+			<li><a name="non-active" href="#highResTimeAPI" onclick="changeStyle(event, 'highResTimeAPI')" id="highResTimeAPINav">High Resolution time API	</a></li>
+			<li><a href="#networkIAPI" name="non-active" onclick="changeStyle(event, 'networkIAPI')" id="networkIAPINav">Network information API</a></li>
+			<li><a href="#vibrationAPI" name="non-active" onclick="changeStyle(event, 'vibrationAPI')" id="vibrationAPINav">Vibration API</a></li>
+			<li><a href="#screenOrientation" name="non-active" onclick="changeStyle(event, 'screenOrientation')" id="screenOrientationNav">Screen orientation API</a></li>
+			<li><a href="#speechSynthesis" name="non-active" onclick="changeStyle(event, 'speechSynthesis')" id="speechSynthesisNav">Speech Synthesis API</a></li>
+		</ul>
+		<div class="main-body" id="main-body">
+			<h2 class="stick-top-header">HTML5 API list</h2>
+			<span id="highResTimeAPI" name="tab-content">
+				<p class="heading-paragraph">High resolution time API</p>
+				<p>The ECMAScript Language specification [ECMA-262] defines the Date object as a time value representing time in milliseconds since 01 January, 1970 UTC. For most purposes, this definition of time is sufficient as these values represent time to millisecond precision for any instant that is within approximately 285,616 years from 01 January, 1970 UTC. The DOMTimeStamp is defined similarly [WEBIDL]</p>
+				<p>In practice, these definitions of time are subject to both clock skew and adjustment of the system clock. The value of time may not always be monotonically increasing and subsequent values may either decrease or remain the same.</p>
+				<p>For certain tasks this definition of time may not be sufficient as it does not allow for sub-millisecond resolution and is subject to system clock skew. For example:</p>
+				<ol>
+					<li>When attempting to accurately measure the elapsed time of navigating to a Document, fetching of resources or execution of script, a monotonically increasing clock with sub-millisecond resolution is desired.</li>
+					<li>When calculating the animation state from script, developers will need to accurately know the amount of time that has elapsed in the animation in order to properly update the next scene of the animation.</li>
+				</ol>
+				<p>The DOMHighResTimeStamp type, performance.now method, and performance.timeOrigin attributes of the Performance interface resolve the above issues by providing monotonically increasing time values with sub-millisecond resolution.</p>
+				<article class="all-browsers">
+				  <h1>Properties and methods</h1>
+				  <article class="browser">
+					<h2>performance.now()</h2>
+					<p><code>performance.now()</code> returns the number of milliseconds, with microseconds in the fractional part, from <code>performance.timing.navigationStart()</code>, the start of navigation of the document, to the <code>performance.now()</code> call.</p>
+				  </article>
+				</article>
+				<u><span id="highTimeRes"></span></u>
+			</span>
+			<span id="networkIAPI" name="tab-content">
+				<p class="heading-paragraph">Network information API</p>
+				<p>The Network Information API provides access to the connection type the system is using to communicate with the network, cellular, Wi-Fi, Bluetooth, etc. It also provides a means for scripts to be notified if the connection type changes. This is to allow developers to make dynamic changes to the DOM and/or inform the user that the network connection type has changed.</p>
+				<article class="all-browsers">
+				  <h1>Properties and methods</h1>
+				  <article class="browser">
+					<h2>effectiveType property</h2>
+					<p>The <code>effectiveType</code> read-only property of the <code>NetworkInformation</code> interface returns the effective type of the connection meaning one of 'slow-2g', '2g', '3g', or '4g'. This value is determined using a combination of recently observed, round-trip time and downlink values.</p>
+				  </article>
+				  <article class="browser">
+					<h2>onchange event handler</h2>
+					<p>The <code>NetworkInformation.onchange</code> event handler contains the code that is fired when connection information changes, and the <code>change</code> is received by the <code>NetworkInformation</code> object.</p>
+					<p>Try disconnecting from the network and a popup will be show</p>
+				  </article>
+				</article>
+				<u><span id="networkApi"></span></u>
+			</span>
+			<span id="vibrationAPI" name="tab-content">
+				<p class="heading-paragraph">Vibration API</p>
+				<p>The window.navigator object has vibrate method which accept one parameter, i.e. the time in miliseconds</p>
+				<p>It is mainly used for making vibrational feedback.</p>
+				<p><code>The device must be compatible to run the vibrate method</code></p>
+				<article class="all-browsers">
+				  <h1>Properties and methods</h1>
+				  <article class="browser">
+					<h2>vibrate()</h2>
+					<p>The <code>vibrate()</code> method of the <code>navigator</code> interface accepts one parameter, which can be an integer or an array of integers. </p>
+					<p>It is basically the duration of the vibration</p>
+				  </article>
+				</article>
+				<span class="style-inline">
+					<p>Will be vibrated for a duration of 2 seconds using navigator.vibrate(2000)</p>
+					<button onclick="vibrateOnce()">Vibrate once</button>
+					<button onclick="vibrateThrice()">Vibrate thrice</button>
+					<button onclick="vibrateEnd()">Stop</button>
+				</span>
+				<br/>
+			</span>
+			<span id="screenOrientation" name="tab-content">
+				<p class="heading-paragraph">Screen orientation API</p>
+				<p>The screen orientation api provided the ability to read the orientation of the viewport, detect change of the state.</p>
+				<p>Also, it is used to lock the orientation and unlock too.</p>
+				<article class="all-browsers">
+				  <h1>Properties and methods</h1>
+				  <article class="browser">
+					<h2>type property</h2>
+					<p>The <code>type</code> property of the <code>window.screen.orientation</code> interface returns either of the four values of orientation. </p>
+					<ol>
+						<li><code>portrait-primary</code></li>
+						<li><code>portrait-secondary</code></li>
+						<li><code>landscape-primary</code></li>
+						<li><code>landscape-secondary</code></li>
+					</ol>
+				  </article>
+				  <article class="browser">
+					<h2>lockOrientation()</h2>
+					<p>The <code>lockOrientation()</code> method locks the device’s screen as if the device was physically rotated in a certain position. </p>
+					<p>The <code>lockOrientation()</code> method accepts one of the orientation state as a parameter</p>
+				  </article>
+				  <article class="browser">
+					<h2>unlockOrientation()</h2>
+					<p>The <code>unlockOrientation()</code> method is used to release a previously set lock and allows the screen to rotate again in every position.</p>
+				  </article>
+				  <article class="browser">
+					<h2>onchange event</h2>
+					<p>The <code>onchange</code> event that is fired every time the screen orientation changes.</p>
+				  </article>
+				</article>
+				<span style="display:block; " id="orientationState"></span>
+				<p>Resize the viewport or increase and decrease the width and the height of the screen to see changes accordingly. </p>
+				<p>Also, check the console for the orientation onchange event</p>
+				<button onclick="detectO()">Detect orientation</button>
+				<span style="display:block; " id="error"></span>
+				<br/>
+			</span>
+			<span id="speechSynthesis" name="tab-content">
+				<p class="heading-paragraph">Speech Synthesis API</p>
+				<p>The Web Speech API provides provides both Speech recognition and Text to speech functionality. </p>
+				<p>Convert text to speech using SpeechSynthesisUtterance object</p>
+				<p>The <code>SpeechSynthesisUtterance</code> object represents the text that will be converted to speech by the synthesizer</p>
+				<p>Lets check out the properties provided by the<code>SpeechSynthesisUtterance</code> object</p>
+				<article class="all-browsers">
+				  <h1>Properties and methods</h1>
+				  <article class="browser">
+					<h2>text</h2>
+					<p><code>text</code> property of the <code>SpeechSynthesisUtterance</code> object is used to set set the text that will be converted to speech </p>
+				  </article>
+				  <article class="browser">
+					<h2>lang</h2>
+					<p><code>lang</code> property of the <code>SpeechSynthesisUtterance</code> object is used for representing the language of the speech synthesis for the utterance (for example “en-GB” or “it-IT”). </p>
+				  </article>
+				  <article class="browser">
+					<h2>volum</h2>
+					<p><code>volume</code> is a number representing the volume for the text. It ranges from 0 (minimum) to 1 (maximum) inclusive, and the default value is 1.</p>
+				  </article>
+				  <article class="browser">
+					<h2>rate</h2>
+					<p><code>rate</code>is the number representing the speaking rate for the utterance. It is relative to the default rate for the voice. </p>
+				  </article>
+				  <article class="browser">
+					<h2>pitch</h2>
+					<p><code>pitch</code>is the number representing the speaking pitch for the utterance. It ranges from 0 (minimum) to 2 (maximum) inclusive. The default value is 1. </p>
+				  </article>
+				</article>
+				<div style="display:block; margin-top:25px;">
+					<span>Type you text <input type="text" id="textFromInput"/></span> 
+					<button onclick="convertToSpeech()">Convert text to speech</button>
+					<span id="error"></span>
+				</div>
+				<p class="heading-paragraph">Speech Recognition API</p>
+				<p>Documentation will be uploaded shortly </p>
+				<div style="display:block; margin-top:25px;">
+					<span>Working demo of speech recognition API</span> 
+					<button id="startStopSpeakingBtn" onclick="toggleSpeaking()">Speak</button>
+					<p>You said<span id="spoken"></span></p>
+				</div>
+				<br/>
+			</span>
+		</div>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
